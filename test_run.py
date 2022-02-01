@@ -28,6 +28,11 @@ EMISSION_CAP = UserRunTimeConfig["EMISSION_CAP"]
 IAMC_PRINT = UserRunTimeConfig["IAMC_PRINT"]
 WRITE_LP = UserRunTimeConfig["WRITE_LP"]
 PICKLE_INSTANCE = UserRunTimeConfig["PICKLE_INSTANCE"] 
+supernodes = supernodes = {
+        'Nordics': ['NO1', 'NO2', 'NO3', 'NO4', 'NO5', 'NO6', 'Sweden', 'Denmark'],
+        'Europe': ['France', 'Germany'],
+        'Baltics': ['Romania', 'Poland'],
+}
 
 
 #############################
@@ -96,9 +101,10 @@ if scenariogeneration:
                              peakSeasonHours = lengthPeakSeason,
                              dict_countries = dict_countries,
 			                 time_format = time_format,
-			                 fix_sample = fix_sample)
+			                 fix_sample = fix_sample,
+                             supernodes=supernodes)
 
-generate_tab_files(filepath = workbook_path, tab_file_path = tab_file_path)
+generate_tab_files(filepath = workbook_path, tab_file_path = tab_file_path, supernodes=supernodes)
 
 run_empire(name = name, 
            tab_file_path = tab_file_path,

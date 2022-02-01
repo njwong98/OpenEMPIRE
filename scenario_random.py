@@ -2,7 +2,7 @@ __author__ = "Stian Backe"
 __license__ = "MIT"
 __maintainer__ = "Stian Backe"
 __email__ = "stian.backe@ntnu.no"
-
+from aggregator import aggregator
 
 import pandas as pd
 import numpy as np
@@ -254,7 +254,7 @@ def sample_generator_peak(data, seasons, g, scenario,
 
 def generate_random_scenario(filepath, tab_file_path, scenarios, seasons,
                              Periods, regularSeasonHours, peakSeasonHours, 
-                             dict_countries, time_format, fix_sample):
+                             dict_countries, time_format, fix_sample, supernodes):
     
     if fix_sample:
         print("Generating scenarios according to key...")
@@ -267,12 +267,12 @@ def generate_random_scenario(filepath, tab_file_path, scenarios, seasons,
     hydroSeasonal = pd.DataFrame()
     
     # Load all the raw scenario data
-    solar_data = pd.read_csv(filepath + "/solar.csv")
-    windonshore_data = pd.read_csv(filepath + "/windonshore.csv")
-    windoffshore_data = pd.read_csv(filepath + "/windoffshore.csv")
-    hydroror_data = pd.read_csv(filepath + "/hydroror.csv")
-    hydroseasonal_data = pd.read_csv(filepath + "/hydroseasonal.csv")
-    electricload_data = pd.read_csv(filepath + "/electricload.csv")
+    solar_data = aggregator(filepath + "/solar.csv", supernodes)
+    windonshore_data = aggregator(filepath + "/windonshore.csv", supernodes)
+    windoffshore_data = aggregator(filepath + "/windoffshore.csv", supernodes)
+    hydroror_data = aggregator(filepath + "/hydroror.csv", supernodes)
+    hydroseasonal_data = aggregator(filepath + "/hydroseasonal.csv", supernodes)
+    electricload_data = aggregator(filepath + "/electricload.csv", supernodes)
 
     # Make datetime columns
     solar_data = make_datetime(solar_data, time_format)

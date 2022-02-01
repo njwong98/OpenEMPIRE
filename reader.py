@@ -6,7 +6,7 @@ __maintainer__ = "Stian Backe"
 __email__ = "stian.backe@ntnu.no"
 
 
-def read_file(excelfile, sheet, columns, tab_file_path, filename, skipheaders=0):
+def read_file(excelfile, sheet, columns, tab_file_path, filename, skipheaders=0, supernodes=None):
     #input_sheet = pd.read_excel(filepath + "/" +excel, sheet, skiprows=2)
 
     input_sheet = excelfile[sheet]
